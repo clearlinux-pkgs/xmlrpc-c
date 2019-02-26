@@ -1,0 +1,14 @@
+Configure miss: wininet-config
+Configure miss: whether to build Wininet client XML transport module
+Configure miss: libwww-config
+Configure miss: whether to build Libwww client XML transport module
+Configure miss: __strtoll
+Configure miss: __strtoull
+Configure miss: _strtoui64
+Configure miss: _stricmp
+Configure miss: curl-xmlrpc-config
+Configure miss: whether to use SSL with libwww
+Configure miss: whether to build the libxml2 backend
+Configure miss: xmlrpc_server_abyss.c:783:13: warning: format not a string literal and no format arguments [-Wformat-security]
+
+Configure miss: xmlrpc_server_abyss.c:783:13: warning: format not a string literal and no format arguments [-Wformat-security]
