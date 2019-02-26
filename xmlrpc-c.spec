@@ -4,7 +4,7 @@
 #
 Name     : xmlrpc-c
 Version  : 1.43.08
-Release  : 1
+Release  : 2
 URL      : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.43.08/xmlrpc-c-1.43.08.tgz
 Source0  : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.43.08/xmlrpc-c-1.43.08.tgz
 Summary  : No detailed summary available
