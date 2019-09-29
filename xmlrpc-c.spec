@@ -4,7 +4,7 @@
 #
 Name     : xmlrpc-c
 Version  : 1.51.04
-Release  : 4
+Release  : 5
 URL      : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.51.04/xmlrpc-c-1.51.04.tgz
 Source0  : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.51.04/xmlrpc-c-1.51.04.tgz
 Summary  : Xmlrpc-c XML parsing library
@@ -70,17 +70,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569784454
+export SOURCE_DATE_EPOCH=1569784586
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static
-make  %{?_smp_mflags}
+make
 
 %install
-export SOURCE_DATE_EPOCH=1569784454
+export SOURCE_DATE_EPOCH=1569784586
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xmlrpc-c
 cp doc/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-c/doc_COPYING
