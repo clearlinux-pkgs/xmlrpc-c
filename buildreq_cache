@@ -1,6 +1,8 @@
 1.51.04
 curl-dev
+libxml2-dev
 ncurses-dev
 nghttp2-dev
 openssl-dev
 readline-dev
+xz-dev

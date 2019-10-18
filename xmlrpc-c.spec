@@ -4,7 +4,7 @@
 #
 Name     : xmlrpc-c
 Version  : 1.51.04
-Release  : 5
+Release  : 6
 URL      : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.51.04/xmlrpc-c-1.51.04.tgz
 Source0  : https://sourceforge.net/projects/xmlrpc-c/files/Xmlrpc-c%20Super%20Stable/1.51.04/xmlrpc-c-1.51.04.tgz
 Summary  : Xmlrpc-c XML parsing library
@@ -14,10 +14,13 @@ Requires: xmlrpc-c-bin = %{version}-%{release}
 Requires: xmlrpc-c-lib = %{version}-%{release}
 Requires: xmlrpc-c-license = %{version}-%{release}
 BuildRequires : curl-dev
+BuildRequires : libxml2-dev
 BuildRequires : ncurses-dev
 BuildRequires : nghttp2-dev
 BuildRequires : openssl-dev
 BuildRequires : readline-dev
+BuildRequires : xz-dev
+Patch1: 0001-cleanup-and-fix-libxml2-backend.patch
 
 %description
 This is the source code for XML-RPC for C/C++, called Xmlrpc-c for short.
@@ -64,28 +67,29 @@ license components for the xmlrpc-c package.
 
 %prep
 %setup -q -n xmlrpc-c-1.51.04
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1569784586
+export SOURCE_DATE_EPOCH=1571421844
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
 export FFLAGS="$CFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto "
-%configure --disable-static
+%configure --disable-static --enable-libxml2-backend
 make
 
 %install
-export SOURCE_DATE_EPOCH=1569784586
+export SOURCE_DATE_EPOCH=1571421844
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/xmlrpc-c
-cp doc/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-c/doc_COPYING
-cp lib/abyss/license.txt %{buildroot}/usr/share/package-licenses/xmlrpc-c/lib_abyss_license.txt
-cp tools/binmode-rpc-kit/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-c/tools_binmode-rpc-kit_COPYING
+cp %{_builddir}/xmlrpc-c-1.51.04/doc/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-c/b43162159176b3f8a25cb43948e3752105a208c2
+cp %{_builddir}/xmlrpc-c-1.51.04/lib/abyss/license.txt %{buildroot}/usr/share/package-licenses/xmlrpc-c/62b46a0d87d04659a7b65a6688796391d18e5349
+cp %{_builddir}/xmlrpc-c-1.51.04/tools/binmode-rpc-kit/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-c/f1af756e2961d4294bf819747ff45d34b1cce972
 %make_install
 
 %files
@@ -157,15 +161,12 @@ cp tools/binmode-rpc-kit/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-
 /usr/lib64/libxmlrpc_server_pstream++.so
 /usr/lib64/libxmlrpc_util++.so
 /usr/lib64/libxmlrpc_util.so
-/usr/lib64/libxmlrpc_xmlparse.so
-/usr/lib64/libxmlrpc_xmltok.so
 /usr/lib64/pkgconfig/xmlrpc++.pc
 /usr/lib64/pkgconfig/xmlrpc.pc
 /usr/lib64/pkgconfig/xmlrpc_abyss++.pc
 /usr/lib64/pkgconfig/xmlrpc_abyss.pc
 /usr/lib64/pkgconfig/xmlrpc_client++.pc
 /usr/lib64/pkgconfig/xmlrpc_client.pc
-/usr/lib64/pkgconfig/xmlrpc_expat.pc
 /usr/lib64/pkgconfig/xmlrpc_server++.pc
 /usr/lib64/pkgconfig/xmlrpc_server.pc
 /usr/lib64/pkgconfig/xmlrpc_server_abyss.pc
@@ -210,13 +211,9 @@ cp tools/binmode-rpc-kit/COPYING %{buildroot}/usr/share/package-licenses/xmlrpc-
 /usr/lib64/libxmlrpc_util++.so.8.51
 /usr/lib64/libxmlrpc_util.so.4
 /usr/lib64/libxmlrpc_util.so.4.51
-/usr/lib64/libxmlrpc_xmlparse.so.3
-/usr/lib64/libxmlrpc_xmlparse.so.3.51
-/usr/lib64/libxmlrpc_xmltok.so.3
-/usr/lib64/libxmlrpc_xmltok.so.3.51
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/xmlrpc-c/doc_COPYING
-/usr/share/package-licenses/xmlrpc-c/lib_abyss_license.txt
-/usr/share/package-licenses/xmlrpc-c/tools_binmode-rpc-kit_COPYING
+/usr/share/package-licenses/xmlrpc-c/62b46a0d87d04659a7b65a6688796391d18e5349
+/usr/share/package-licenses/xmlrpc-c/b43162159176b3f8a25cb43948e3752105a208c2
+/usr/share/package-licenses/xmlrpc-c/f1af756e2961d4294bf819747ff45d34b1cce972
