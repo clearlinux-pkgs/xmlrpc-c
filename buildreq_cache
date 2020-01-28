@@ -1,9 +1,8 @@
-1.51.05
+1.51.06
 curl-dev
 libxml2-dev
 ncurses-dev
 nghttp2-dev
 openssl-dev
 readline-dev
-util-linux
 xz-dev
